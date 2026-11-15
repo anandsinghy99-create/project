@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Event Management & Registration Portal</title>
+    <!-- Link external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="no-print">
+        <div class="logo" onclick="showPage('home')">🎓 CampusEvents</div>
+        <ul>
+            <li><a id="nav-home" onclick="showPage('home')" class="active">Home</a></li>
+            <li><a id="nav-events" onclick="showPage('events')">Browse Events</a></li>
+            <li><a id="nav-about" onclick="showPage('about')">About Us</a></li>
+            <li><a id="nav-contact" onclick="showPage('contact')">Contact</a></li>
+            <li><a id="nav-register" onclick="showPage('register')">Register</a></li>
+            <li><a id="nav-slip" onclick="showPage('slip')">Slip</a></li>
+            <li><a id="nav-admin" onclick="showPage('admin')" class="nav-btn">Admin Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <!-- Notification Banner -->
+    <div id="notification-bar" class="no-print">
+        📢 Notification: Registrations are open for Tech Hackathon 2026! Limited seats available.
+    </div>
+
+    <!-- 1. HOME PAGE -->
+    <div id="home" class="page-section active-page">
+        <div class="hero">
+            <h1>Campus Event Management & Registration Portal</h1>
+            <p>A centralized platform for college fests, workshops, seminars, and competitions. Browse upcoming events, check live seat availability, and download instant confirmation slips.</p>
+            <button class="btn" onclick="showPage('events')">Browse Upcoming Events</button>
+            <button class="btn" style="background-color: #10b981; margin-left: 10px;" onclick="showPage('admin')">Organizer Dashboard</button>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h2 class="section-heading">Portal Key Features</h2>
+            <div class="event-grid">
+                <div class="event-card">
+                    <h3>📊 Live Seat Tracking</h3>
+                    <p>Real-time seat counter updates automatically after every registration to prevent over-booking.</p>
+                </div>
+                <div class="event-card">
+                    <h3>🎫 Instant Slip</h3>
+                    <p>Receive a printable confirmation slip with a unique registration ID immediately after applying.</p>
+                </div>
+                <div class="event-card">
+                    <h3>🛠️ Admin Control</h3>
+                    <p>Organizers can add new events with custom seat limits, venues, and eligibility criteria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. BROWSE EVENTS PAGE -->
+    <div id="events" class="page-section">
+        <h2 class="section-heading">Upcoming Campus Events</h2>
+        <p style="color: #64748b; margin-bottom: 20px;">Check event schedules, eligibility, and live remaining seats below.</p>
+        <div id="events-list-container" class="event-grid"></div>
+    </div>
+
+    <!-- 3. ABOUT US PAGE -->
+    <div id="about" class="page-section">
+        <div class="box-container">
+            <h2 class="section-heading">About Campus Event Portal</h2>
+            <p style="color: #475569; line-height: 1.7; margin-bottom: 15px;">
+                Welcome to the official <strong>Campus Event Management & Registration Portal</strong>. Our platform is designed to bridge the gap between university management and students by bringing all technical, cultural, and sports events under one roof.
+            </p>
+            <p style="color: #475569; line-height: 1.7; margin-bottom: 20px;">
+                Students can easily explore schedules, view venue details, and participate in campus activities without missing out on important updates or facing paper-work hassles.
+            </p>
+
+            <h3 style="color: #1e293b; margin-top: 25px; margin-bottom: 10px;">Why Choose Our Portal?</h3>
+            <div class="features-list">
+                <div class="feature-box">
+                    <h4>🎯 Centralized Hub</h4>
+                    <p style="font-size: 14px; color: #64748b;">All university events, venues, and schedules listed neatly.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>⚡ Easy Registration</h4>
+                    <p style="font-size: 14px; color: #64748b;">Quick student registration forms with immediate department tracking.</p>
+                </div>
+            </div>
+
+            <!-- JavaScript Toggle Button -->
+            <button class="btn" style="background-color: #2563eb; margin-top: 25px;" id="toggleBtn" onclick="toggleDetails()">Show More Details</button>
+            
+            <div id="extra-info">
+                <strong>📌 Project & Committee Info:</strong><br>
+                Developed as an Internet Programming project. All registrations and campus activities are managed by the Student Cultural & Technical Committee.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. CONTACT US PAGE -->
+    <div id="contact" class="page-section">
+        <div class="box-container" style="display: flex; gap: 40px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 280px;">
+                <h2 class="section-heading">Get in Touch</h2>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Have questions regarding events, registrations, or rules? Feel free to reach out to the campus management cell.</p>
+                
+                <div style="margin-bottom: 15px; font-size: 14px;">
+                    <strong style="color: #1e293b; display: block; margin-bottom: 3px;">📍 Campus Address:</strong>
+                    University Campus, Block-32, Event Management Cell, India
+                </div>
+                <div style="margin-bottom: 15px; font-size: 14px;">
+                    <strong style="color: #1e293b; display: block; margin-bottom: 3px;">📧 Email Support:</strong>
+                    support@campusevents.edu
+                </div>
+                <div style="margin-bottom: 15px; font-size: 14px;">
+                    <strong style="color: #1e293b; display: block; margin-bottom: 3px;">📞 Helpline Number:</strong>
+                    +91 98765 43210 (Mon - Fri, 9 AM - 5 PM)
+                </div>
+            </div>
+
+            <div style="flex: 1; min-width: 280px;">
+                <h2 class="section-heading">Send Us a Message</h2>
+                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="cName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Query / Message</label>
+                        <textarea rows="3" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+                <div id="success-msg">
+                    ✅ Thank you! Your message has been sent successfully. We will get back to you soon.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. STUDENT REGISTRATION PAGE -->
+    <div id="register" class="page-section">
+        <div class="box-container" style="max-width: 600px; margin: 0 auto;">
+            <h2 class="section-heading">Student Event Registration</h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Fill in your details carefully. Over-registration is automatically blocked when seats reach zero.</p>
+            
+            <form id="registrationForm" onsubmit="registerStudent(event)">
+                <div class="form-group">
+                    <label>Select Event *</label>
+                    <select id="reg-event-select" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Student Full Name *</label>
+                    <input type="text" id="reg-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>College Roll / Registration Number *</label>
+                    <input type="text" id="reg-roll" placeholder="e.g. 2026CS104" required>
+                </div>
+                <div class="form-group">
+                    <label>Department & Year *</label>
+                    <input type="text" id="reg-dept" placeholder="e.g. B.Tech CSE - 2nd Year" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="reg-email" placeholder="student@college.edu" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Confirm Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 6. CONFIRMATION SLIP PAGE -->
+    <div id="slip" class="page-section">
+        <div id="no-slip-msg" class="box-container" style="text-align: center;">
+            <h3>No Confirmation Slip Found</h3>
+            <p style="color: #64748b; margin: 10px 0 20px 0;">Please register for an event first to generate your confirmation slip.</p>
+            <button class="btn" onclick="showPage('events')">Go to Events</button>
+        </div>
+
+        <div id="printable-slip" class="slip-box" style="display: none;">
+            <div class="slip-header">
+                <h2>🎓 CAMPUS EVENT PORTAL</h2>
+                <p style="color: #64748b; font-size: 14px;">Official Event Registration Confirmation Slip</p>
+            </div>
+            <div class="slip-row"><strong>Registration ID:</strong> <span id="slip-id"></span></div>
+            <div class="slip-row"><strong>Event Name:</strong> <span id="slip-event"></span></div>
+            <div class="slip-row"><strong>Date & Venue:</strong> <span id="slip-venue"></span></div>
+            <div class="slip-row"><strong>Student Name:</strong> <span id="slip-name"></span></div>
+            <div class="slip-row"><strong>Roll Number:</strong> <span id="slip-roll"></span></div>
+            <div class="slip-row"><strong>Department:</strong> <span id="slip-dept"></span></div>
+            <div class="slip-row"><strong>Status:</strong> <span style="color: #15803d; font-weight: bold;">CONFIRMED ✅</span></div>
+            
+            <div style="text-align: center; margin-top: 25px;" class="no-print">
+                <button class="btn" onclick="window.print()">🖨️ Print / Save PDF Slip</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. ORGANIZER / ADMIN DASHBOARD -->
+    <div id="admin" class="page-section">
+        <h2 class="section-heading">Organizer / Admin Dashboard</h2>
+        
+        <div class="box-container">
+            <h3 style="margin-bottom: 15px; color: #1e293b;">➕ Create New Campus Event</h3>
+            <form id="createEventForm" onsubmit="createNewEvent(event)">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1; min-width: 220px;">
+                        <label>Event Title *</label>
+                        <input type="text" id="ev-title" placeholder="e.g. AI Robotics Workshop" required>
+                    </div>
+                    <div class="form-group" style="flex: 1; min-width: 220px;">
+                        <label>Category *</label>
+                        <select id="ev-category" required>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Fest">College Fest</option>
+                            <option value="Seminar">Seminar</option>
+                            <option value="Competition">Competition</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1; min-width: 200px;">
+                        <label>Date & Time *</label>
+                        <input type="text" id="ev-date" placeholder="e.g. 25 Nov 2026, 10:00 AM" required>
+                    </div>
+                    <div class="form-group" style="flex: 1; min-width: 200px;">
+                        <label>Venue *</label>
+                        <input type="text" id="ev-venue" placeholder="e.g. Main Auditorium" required>
+                    </div>
+                    <div class="form-group" style="flex: 1; min-width: 150px;">
+                        <label>Total Seat Limit *</label>
+                        <input type="number" id="ev-seats" min="1" placeholder="e.g. 50" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Eligibility Criteria *</label>
+                    <input type="text" id="ev-eligibility" placeholder="e.g. Open to all B.Tech & BCA students" required>
+                </div>
+                <div class="form-group">
+                    <label>Event Description *</label>
+                    <textarea id="ev-desc" rows="2" placeholder="Brief details about the event..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Publish Event</button>
+            </form>
+        </div>
+
+        <div class="box-container">
+            <h3 style="margin-bottom: 10px; color: #1e293b;">📋 Registered Students Log</h3>
+            <p style="font-size: 14px; color: #64748b;">Live list of all confirmed student registrations.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reg ID</th>
+                        <th>Student Name</th>
+                        <th>Roll No</th>
+                        <th>Department</th>
+                        <th>Event Registered</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-student-table">
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #64748b;">No registrations recorded yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="no-print">
+        <p>&copy; 2026 Campus Event Management & Registration Portal | Built with HTML, CSS & Basic JS</p>
+    </footer>
+
+    <!-- Link external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
